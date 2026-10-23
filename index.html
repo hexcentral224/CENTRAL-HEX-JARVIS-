@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080808">
+  <meta name="description" content="CENTRAL-HEX — interface de contrôle JARVIS, commandes vocales, automatisations et journal d'activité.">
+  <title>CENTRAL-HEX | JARVIS</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navigation principale">
+      <a class="brand" href="#" aria-label="CENTRAL-HEX accueil">
+        <span class="brand-mark">C<span>H</span></span>
+        <span class="brand-copy"><strong>CENTRAL-HEX</strong><small>JARVIS SYSTEM</small></span>
+      </a>
+      <div class="side-label">WORKSPACE</div>
+      <nav class="nav-list">
+        <button class="nav-item active" data-view="overview"><span class="nav-icon">◈</span> Vue d'ensemble</button>
+        <button class="nav-item" data-view="assistant"><span class="nav-icon">✳</span> Assistant JARVIS</button>
+        <button class="nav-item" data-view="automation"><span class="nav-icon">⌘</span> Automatisations <span class="nav-count" id="ruleCount">0</span></button>
+        <button class="nav-item" data-view="activity"><span class="nav-icon">≋</span> Journal d'activité</button>
+      </nav>
+      <div class="side-label side-label-spaced">SYSTEM</div>
+      <nav class="nav-list">
+        <button class="nav-item" data-view="modules"><span class="nav-icon">▦</span> Modules</button>
+        <button class="nav-item" data-view="settings"><span class="nav-icon">⚙</span> Configuration</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="status-card">
+          <span class="status-dot"></span>
+          <div><strong>Interface opérationnelle</strong><small>Mode navigateur local</small></div>
+        </div>
+        <div class="user-mini"><div class="avatar">CH</div><div><strong>Système CENTRAL-HEX</strong><small>Administrateur local</small></div><span class="more">•••</span></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-button mobile-menu" id="menuToggle" aria-label="Ouvrir le menu">☰</button>
+          <div class="breadcrumb">CENTRAL-HEX <span>/</span> <strong id="pageCrumb">Vue d'ensemble</strong></div>
+        </div>
+        <div class="topbar-right">
+          <div class="live-pill"><span class="status-dot"></span><span id="systemStatus">SYSTÈME ACTIF</span></div>
+          <button class="icon-button" id="themeInfo" aria-label="Informations système" title="Informations système">ⓘ</button>
+          <div class="avatar top-avatar">CH</div>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="view active" id="view-overview">
+          <div class="page-heading">
+            <div><p class="eyebrow">CONSOLE DE CONTRÔLE <span class="eyebrow-line"></span></p><h1>Vue d'ensemble<span class="period">.</span></h1><p class="subheading">Bienvenue dans votre espace de contrôle. Tout est sous contrôle.</p></div>
+            <button class="button button-light" data-go="assistant"><span>✳</span> Ouvrir JARVIS <span>↗</span></button>
+          </div>
+
+          <div class="hero-panel">
+            <div class="hero-grid"></div>
+            <div class="hero-copy"><div class="hero-tag"><span class="status-dot"></span> CENTRAL-HEX INTELLIGENCE</div><h2>Un système.<br><span>Des possibilités infinies.</span></h2><p>Votre centre de commande personnel. Interagissez, automatisez et gardez une vue claire sur votre environnement.</p><button class="button button-outline" data-go="assistant">Lancer l'assistant <span>→</span></button></div>
+            <div class="core-visual" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><div class="core-center"><span>CH</span><small>CORE</small></div><span class="core-point point-a"></span><span class="core-point point-b"></span><span class="core-point point-c"></span></div>
+            <div class="hero-index">CH / 001<br>CORE INTERFACE</div>
+          </div>
+
+          <div class="section-head"><div><h2>État du système</h2><p>Indicateurs disponibles dans ce navigateur</p></div><span class="tiny-label">MISE À JOUR EN DIRECT</span></div>
+          <div class="stats-grid">
+            <article class="stat-card"><div class="stat-top"><span>Interface</span><span class="stat-icon">◈</span></div><div class="stat-value">ACTIVE</div><div class="stat-foot"><span class="mini-dot"></span> Fonctionnement local</div></article>
+            <article class="stat-card"><div class="stat-top"><span>Règles créées</span><span class="stat-icon">⌘</span></div><div class="stat-value" id="statRules">00</div><div class="stat-foot">Automatisations enregistrées</div></article>
+            <article class="stat-card"><div class="stat-top"><span>Actions journalisées</span><span class="stat-icon">≋</span></div><div class="stat-value" id="statActions">00</div><div class="stat-foot">Sur cet appareil uniquement</div></article>
+            <article class="stat-card"><div class="stat-top"><span>Voix navigateur</span><span class="stat-icon">◖</span></div><div class="stat-value" id="statVoice">PRÊTE</div><div class="stat-foot">Selon la prise en charge du navigateur</div></article>
+          </div>
+
+          <div class="lower-grid">
+            <section class="panel quick-panel"><div class="panel-heading"><div><h2>Actions rapides</h2><p>Accès direct aux outils principaux</p></div><span class="panel-mark">↗</span></div>
+              <div class="quick-actions">
+                <button class="quick-action" data-command="aide"><span class="quick-icon">✳</span><span><strong>Parler à JARVIS</strong><small>Chat et commandes</small></span><span class="arrow">↗</span></button>
+                <button class="quick-action" data-command="batterie"><span class="quick-icon">▰</span><span><strong>État de l'appareil</strong><small>Infos disponibles au navigateur</small></span><span class="arrow">↗</span></button>
+                <button class="quick-action" data-go="automation"><span class="quick-icon">⌘</span><span><strong>Nouvelle règle</strong><small>Créer une automatisation locale</small></span><span class="arrow">↗</span></button>
+              </div>
+            </section>
+            <section class="panel activity-panel"><div class="panel-heading"><div><h2>Activité récente</h2><p>Les dernières actions de la session</p></div><button class="text-button" data-go="activity">Tout voir ↗</button></div><div class="activity-list" id="recentActivity"><div class="empty-state">Aucune activité pour le moment.<br>Essayez une commande JARVIS.</div></div></section>
+          </div>
+          <footer class="footer"><span>© 2026 CENTRAL-HEX SYSTEM</span><span>CONÇU POUR LE CONTRÔLE <b>·</b> VERSION WEB 1.0</span></footer>
+        </section>
+
+        <section class="view" id="view-assistant">
+          <div class="page-heading"><div><p class="eyebrow">INTERFACE CONVERSATIONNELLE</p><h1>Assistant JARVIS<span class="period">.</span></h1><p class="subheading">Commandes locales, voix et réponses intelligentes configurables.</p></div><span class="mode-chip"><span class="status-dot"></span> LOCAL</span></div>
+          <div class="assistant-layout">
+            <section class="panel chat-panel">
+              <div class="chat-header"><div class="chat-avatar">J<span>·</span></div><div><strong>JARVIS</strong><small><span class="status-dot"></span> Assistant local disponible</small></div><button class="icon-button chat-clear" id="clearChat" title="Effacer la conversation" aria-label="Effacer la conversation">⌫</button></div>
+              <div class="chat-messages" id="chatMessages" aria-live="polite"><div class="message assistant-message"><div class="message-label">JARVIS <span>MAINTENANT</span></div><div class="bubble">Système initialisé. Je peux traiter certaines commandes locales. Tapez <b>« aide »</b> pour afficher les commandes disponibles.</div></div></div>
+              <div class="suggestions"><button data-suggestion="aide">Que peux-tu faire ?</button><button data-suggestion="batterie">État de l'appareil</button><button data-suggestion="ouvre YouTube">Ouvrir YouTube</button></div>
+              <form class="chat-composer" id="chatForm"><button class="mic-button" type="button" id="voiceButton" title="Démarrer la reconnaissance vocale" aria-label="Démarrer la reconnaissance vocale">◖</button><input id="chatInput" autocomplete="off" maxlength="1200" placeholder="Écrivez une commande à JARVIS…" aria-label="Message à JARVIS"><button class="send-button" type="submit" aria-label="Envoyer le message">↑</button></form>
+              <div class="chat-disclaimer">Les actions sensibles ouvrent les applications compatibles. Aucun appel ou SMS n'est envoyé automatiquement.</div>
+            </section>
+            <aside class="assistant-side">
+              <section class="panel side-panel"><div class="panel-heading"><div><h2>Capacités locales</h2><p>Fonctions disponibles dans le navigateur</p></div></div><div class="capability-list"><div><span>✓</span><p><strong>Commandes de texte</strong><small>Interprétation locale</small></p></div><div><span>✓</span><p><strong>Synthèse vocale</strong><small>Si disponible sur l'appareil</small></p></div><div><span>◌</span><p><strong>Reconnaissance vocale</strong><small>Selon navigateur et permissions</small></p></div><div><span>—</span><p><strong>Contrôle système avancé</strong><small>Requiert une application native</small></p></div></div></section>
+              <section class="panel side-panel"><div class="panel-heading"><div><h2>Contexte de session</h2><p>Informations non sensibles</p></div></div><div class="context-row"><span>Plateforme</span><strong id="platformInfo">Navigateur</strong></div><div class="context-row"><span>Langue</span><strong id="languageInfo">Français</strong></div><div class="context-row"><span>Connexion</span><strong id="connectionInfo">—</strong></div><div class="context-row"><span>Mode IA</span><strong id="aiModeInfo">Local</strong></div><button class="button button-outline full-button" data-go="settings">Configurer l'assistant ↗</button></section>
+            </aside>
+          </div>
+          <footer class="footer"><span>© 2026 CENTRAL-HEX SYSTEM</span><span>ASSISTANT JARVIS <b>·</b> WEB 1.0</span></footer>
+        </section>
+
+        <section class="view" id="view-automation">
+          <div class="page-heading"><div><p class="eyebrow">WORKFLOW ENGINE</p><h1>Automatisations<span class="period">.</span></h1><p class="subheading">Créez et gérez des règles enregistrées localement dans ce navigateur.</p></div><button class="button button-light" id="newRuleButton">＋ Nouvelle règle</button></div>
+          <div class="notice"><span>ⓘ</span><p><strong>À savoir :</strong> ces règles sont stockées localement et peuvent être lancées manuellement. Un site web ne tourne pas de façon fiable en arrière-plan lorsque le navigateur est fermé.</p></div>
+          <div class="automation-grid"><section class="panel rules-panel"><div class="panel-heading"><div><h2>Vos règles</h2><p id="rulesSubtitle">Aucune règle créée</p></div><span class="tiny-label">LOCAL</span></div><div id="rulesList" class="rules-list"><div class="empty-state">Aucune automatisation.<br>Créez votre première règle.</div></div></section>
+          <section class="panel rule-form-panel" id="ruleFormPanel"><div class="panel-heading"><div><h2>Créer une règle</h2><p>Définissez une action locale</p></div><span class="panel-mark">⌘</span></div>
+            <form id="ruleForm" class="rule-form">
+              <label for="ruleName">Nom de la règle</label><input id="ruleName" maxlength="70" required placeholder="Ex. Routine du matin">
+              <label for="ruleTrigger">Déclencheur</label><select id="ruleTrigger"><option value="manual">Lancement manuel</option><option value="visit">À l'ouverture de cette page</option></select>
+              <label for="ruleAction">Action</label><select id="ruleAction"><option value="notify">Afficher une notification sur la page</option><option value="speak">Lire un message à voix haute</option><option value="note">Enregistrer une note locale</option></select>
+              <label for="rulePayload">Message / contenu</label><textarea id="rulePayload" rows="3" maxlength="500" placeholder="Contenu de l'action…"></textarea>
+              <div class="form-actions"><button type="reset" class="button button-ghost" id="resetRule">Effacer</button><button class="button button-light" type="submit">Enregistrer la règle ↗</button></div>
+            </form>
+          </section></div>
+          <footer class="footer"><span>© 2026 CENTRAL-HEX SYSTEM</span><span>AUTOMATION ENGINE <b>·</b> WEB 1.0</span></footer>
+        </section>
+
+        <section class="view" id="view-activity">
+          <div class="page-heading"><div><p class="eyebrow">AUDIT TRAIL</p><h1>Journal d'activité<span class="period">.</span></h1><p class="subheading">Historique des actions enregistrées par cette interface.</p></div><button class="button button-outline" id="exportLog">Exporter le journal ↓</button></div>
+          <section class="panel full-panel"><div class="panel-heading"><div><h2>Toutes les activités</h2><p>Stockage local à ce navigateur</p></div><button class="text-button" id="clearLog">Effacer le journal</button></div><div class="table-wrap"><table><thead><tr><th>ÉVÉNEMENT</th><th>DÉTAIL</th><th>HEURE</th><th>STATUT</th></tr></thead><tbody id="activityTable"><tr><td colspan="4" class="empty-table">Aucune activité enregistrée.</td></tr></tbody></table></div></section>
+          <footer class="footer"><span>© 2026 CENTRAL-HEX SYSTEM</span><span>ACTIVITY LOG <b>·</b> WEB 1.0</span></footer>
+        </section>
+
+        <section class="view" id="view-modules">
+          <div class="page-heading"><div><p class="eyebrow">EXTENSION HUB</p><h1>Modules<span class="period">.</span></h1><p class="subheading">État des modules de l'interface et des intégrations possibles.</p></div></div>
+          <div class="module-grid">
+            <article class="panel module-card"><div class="module-icon">✳</div><span class="module-status ready">DISPONIBLE</span><h2>JARVIS Chat</h2><p>Interpréteur de commandes locales et interface conversationnelle.</p><button class="text-button" data-go="assistant">Ouvrir le module ↗</button></article>
+            <article class="panel module-card"><div class="module-icon">◖</div><span class="module-status" id="speechModuleStatus">À VÉRIFIER</span><h2>Voice Engine</h2><p>SpeechRecognition et synthèse vocale si pris en charge par le navigateur.</p><button class="text-button" id="testVoice">Tester la voix ↗</button></article>
+            <article class="panel module-card"><div class="module-icon">⌘</div><span class="module-status ready">DISPONIBLE</span><h2>Automation Engine</h2><p>Règles stockées localement, exécution manuelle et actions simples.</p><button class="text-button" data-go="automation">Gérer les règles ↗</button></article>
+            <article class="panel module-card"><div class="module-icon">▣</div><span class="module-status limited">LIMITÉ</span><h2>Android Bridge</h2><p>Les actions natives exigent une application Android ou un backend sécurisé.</p><button class="text-button" data-go="settings">Voir la configuration ↗</button></article>
+            <article class="panel module-card"><div class="module-icon">◇</div><span class="module-status limited">À CONFIGURER</span><h2>IA distante</h2><p>Connecteur API facultatif. Nécessite endpoint, modèle et clé côté serveur recommandé.</p><button class="text-button" data-go="settings">Configurer l'IA ↗</button></article>
+            <article class="panel module-card"><div class="module-icon">≋</div><span class="module-status ready">DISPONIBLE</span><h2>Audit Trail</h2><p>Journal local des commandes et événements de l'interface.</p><button class="text-button" data-go="activity">Ouvrir le journal ↗</button></article>
+          </div>
+          <footer class="footer"><span>© 2026 CENTRAL-HEX SYSTEM</span><span>MODULE HUB <b>·</b> WEB 1.0</span></footer>
+        </section>
+
+        <section class="view" id="view-settings">
+          <div class="page-heading"><div><p class="eyebrow">SYSTEM PREFERENCES</p><h1>Configuration<span class="period">.</span></h1><p class="subheading">Personnalisez le comportement de l'interface JARVIS.</p></div></div>
+          <div class="settings-grid">
+            <section class="panel settings-panel"><div class="panel-heading"><div><h2>Préférences générales</h2><p>Enregistrées sur cet appareil</p></div></div>
+              <label class="setting-row"><span><strong>Réponses vocales</strong><small>Lire les réponses à voix haute si disponible.</small></span><input type="checkbox" id="ttsToggle" checked class="switch"></label>
+              <label class="setting-row"><span><strong>Confirmer les actions</strong><small>Afficher un avertissement avant les actions externes.</small></span><input type="checkbox" id="confirmToggle" checked class="switch"></label>
+              <label class="setting-row"><span><strong>Mode IA distant</strong><small>Le site ne contacte aucune API sans configuration explicite.</small></span><input type="checkbox" id="remoteAiToggle" class="switch"></label>
+              <div class="settings-note">Pour des raisons de sécurité, ne collez pas une clé API secrète dans un site statique public. Utilisez un backend privé qui protège les identifiants.</div>
+            </section>
+            <section class="panel settings-panel"><div class="panel-heading"><div><h2>Connectivité IA</h2><p>Configuration indicative pour un backend personnel</p></div></div>
+              <form id="aiForm" class="rule-form">
+                <label for="aiEndpoint">URL de votre backend</label><input id="aiEndpoint" type="url" placeholder="https://votre-serveur.example/api/chat">
+                <label for="aiModel">Nom du modèle (facultatif)</label><input id="aiModel" maxlength="120" placeholder="Nom du modèle côté serveur">
+                <div class="settings-note">Cette interface sauvegarde les paramètres, mais n'envoie pas de requête IA tant qu'un connecteur serveur sécurisé n'a pas été développé.</div>
+                <button class="button button-light" type="submit">Enregistrer les paramètres</button>
+              </form>
+            </section>
+            <section class="panel settings-panel"><div class="panel-heading"><div><h2>Données locales</h2><p>Contrôle de vos données dans ce navigateur</p></div></div><p class="settings-description">Les règles, préférences et le journal sont stockés dans localStorage. Effacer les données du navigateur peut les supprimer.</p><button class="button button-danger" id="resetAll">Réinitialiser les données locales</button></section>
+          </div>
+          <footer class="footer"><span>© 2026 CENTRAL-HEX SYSTEM</span><span>SETTINGS <b>·</b> WEB 1.0</span></footer>
+        </section>
+      </div>
+    </main>
+  </div>
+  <div class="toast-region" id="toastRegion" aria-live="polite" aria-atomic="true"></div>
+  <div class="modal-backdrop hidden" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmTitle"><div class="modal"><span class="modal-symbol">!</span><h2 id="confirmTitle">Confirmer l'action</h2><p id="confirmText">Souhaitez-vous continuer ?</p><div class="modal-actions"><button class="button button-ghost" id="cancelConfirm">Annuler</button><button class="button button-light" id="acceptConfirm">Confirmer</button></div></div></div>
+</body>
+</html>
